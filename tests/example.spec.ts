@@ -18,3 +18,10 @@ test('homepage has Playwright in title and get started link linking to the intro
   // Expects the URL to contain intro.
   await expect(page).toHaveURL(/.*intro/);
 });
+
+
+test('basic test', async ({ page }) => {
+  await page.goto('https://playwright.dev/');
+  const title = page.locator('.navbar__inner .navbar__title');
+  await expect(title).toHaveText('Playwright');
+});
