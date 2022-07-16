@@ -1,6 +1,6 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
 const config: PlaywrightTestConfig = {
-  testDir: '../tests-examples',
+  testDir: '../tests',
   reporter: 'html',
   use: {
     headless: false,
