@@ -17,7 +17,7 @@ public class SearchPage {
     }
 
     public void search(String text) {
-        searchTermInput.fill(text);
+        searchTermInput.fill(text + " andy.dv.cm");
         searchTermInput.press("Enter");
     }
 }
