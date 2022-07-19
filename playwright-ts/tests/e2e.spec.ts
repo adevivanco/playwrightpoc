@@ -21,7 +21,7 @@ test.describe('End-to-End Tests', () => {
       await expect(page.locator('text=Introduction').first()).toBeVisible();
     });
 
-  test('getting started should contain table of contents', async ({ page }) => {
+  test('getting started should contain table of contents (POM)', async ({ page }) => {
     const playwrightDev = new PlaywrightDevPage(page);
     await playwrightDev.getStarted();
     await expect(playwrightDev.tocList).toHaveText([
