@@ -25,7 +25,7 @@ const WorkoutDetails = ({ workout }) => {
         pathname: "/workouts",
         data: workout.id // your data array of objects
       }}> */}
-      <Link to={`/workouts/${workout._id}`}><h4>{workout.title}</h4></Link>
+      <Link to={`workouts/${workout._id}`}><h4>{workout.title}</h4></Link>
       <p><strong>Load (kg): </strong>{workout.load}</p>
       <p><strong>Number of reps: </strong>{workout.reps}</p>
       <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>

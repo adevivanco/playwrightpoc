@@ -6,7 +6,7 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 const WorkoutPage = () => {
 
-    const { workouts, dispatch } = useWorkoutsContext()
+    const { dispatch } = useWorkoutsContext()
     const { id } = useParams();
 
     const [title, setTitle] = useState('')
@@ -28,6 +28,8 @@ const WorkoutPage = () => {
         dispatch({type: 'DELETE_WORKOUT', payload: json})
     }
     };
+
+    
 
     useEffect(() => {
         const fetchWorkouts = async () => {
@@ -51,14 +53,15 @@ const WorkoutPage = () => {
         }
     
         fetchWorkouts()
-      }, [dispatch])
+      }, [workout,dispatch])
 
 
     console.log(workout);
     return (
+
         <div className="home">
             <div className="workouts">
-                <div className="workout-details">
+            <div className="workout-details">
                     <h4>{workout.title}</h4>
                     <p><strong>Load (kg): </strong>{workout.load}</p>
                     <p><strong>Number of reps: </strong>{workout.reps}</p>
