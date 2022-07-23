@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
-import formatDistanceToNow from 'date-fns/formatDistanceToNow'
-
+import WorkoutDetails from "../components/WorkoutDetails"
 
 const WorkoutPage = () => {
 
-    const { dispatch } = useWorkoutsContext()
+    const { dispatch, workout} = useWorkoutsContext()
     const { id } = useParams();
 
     const [title, setTitle] = useState('')
@@ -16,7 +15,7 @@ const WorkoutPage = () => {
     const [error, setError] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
 
-    const workout = {title, load, reps}
+ //   const workout = {title, load, reps}
 
     const handleDeleteClick = async () => {
     const response = await fetch('/api/workouts/' + workout._id, {
@@ -41,19 +40,19 @@ const WorkoutPage = () => {
             setEmptyFields(json.emptyFields)
           }
           if (response.ok) {
-            setEmptyFields([])
-            setError(null)
-            setTitle(json.title)
-            setLoad(json.load)
-            setReps(json.reps)
-            setCreaateAt(json.createdAt)
+            // setEmptyFields([])
+            // setError(null)
+            // setTitle(json.title)
+            // setLoad(json.load)
+            // setReps(json.reps)
+            // setCreaateAt(json.createdAt)
             dispatch({type: 'GET_WORKOUT', payload: json})
           }
        
         }
     
         fetchWorkouts()
-      }, [workout,dispatch])
+      }, [dispatch])
 
 
     console.log(workout);
@@ -61,13 +60,16 @@ const WorkoutPage = () => {
 
         <div className="home">
             <div className="workouts">
-            <div className="workout-details">
+               {workout && 
+                 <WorkoutDetails workout={workout} key={workout._id} />
+               }
+            {/* <div className="workout-details">
                     <h4>{workout.title}</h4>
                     <p><strong>Load (kg): </strong>{workout.load}</p>
                     <p><strong>Number of reps: </strong>{workout.reps}</p>
-                    {/* <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p> */}
+                    {/* <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p> *
                     <span className="material-symbols-outlined" onClick={handleDeleteClick}>delete</span> 
-                </div>
+                </div> */}
             </div>
         </div>
     )
