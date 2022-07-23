@@ -1,8 +1,7 @@
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
-import { Link, Route, Router, Routes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
-import { WorkoutPage } from '../pages/WorkoutPage';
 
 const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useWorkoutsContext()
