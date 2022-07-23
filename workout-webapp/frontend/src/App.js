@@ -15,8 +15,7 @@ function App() {
         <Routes>
             <Route path="/"  element={<Home />} />
             <Route path="workouts/:id" element={<WorkoutPage />}/>
-          
-          </Routes>
+        </Routes>
         </div>
       </BrowserRouter>
     </div>

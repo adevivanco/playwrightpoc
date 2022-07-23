@@ -18,25 +18,14 @@ const WorkoutDetails = ({ workout }) => {
     }
   };
 
-
   return (
     <div className="workout-details">
-      { id == undefined && 
-      /* <Link
-      to={{
-        pathname: "/workouts",
-        data: workout.id // your data array of objects
-      }}> */
-      <Link to={`/workouts/${workout._id}`}><h4>{workout.title}</h4></Link>}
-      
+      { id === undefined && 
+        <Link to={`/workouts/${workout._id}`}><h4>{workout.title}</h4></Link>
+      }
       { id != undefined && 
-      /* <Link
-      to={{
-        pathname: "/workouts",
-        data: workout.id // your data array of objects
-      }}> */
-      <h4>{workout.title}</h4>}
-
+         <h4>{workout.title}</h4>
+      }
       <p><strong>Load (kg): </strong>{workout.load}</p>
       <p><strong>Number of reps: </strong>{workout.reps}</p>
       <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
