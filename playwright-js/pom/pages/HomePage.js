@@ -8,6 +8,8 @@ exports.HomePage = class HomePage extends BasePage {
     this.page = page;
     this.firsHeaderLinkLocator =  page.locator('text=Workout Buddy');
     this.workoutButtonLocator = page.locator('div.home > form.create > button');
+    this.workoutsSection = page.locator('div.pages > div.home > div.workouts');
+    this.workoutsDetails  = page.locator('div.home > div.workouts > div.workout-details');
   }
 
   async goto() {
@@ -22,8 +24,10 @@ exports.HomePage = class HomePage extends BasePage {
     await expect(this.workoutButtonLocator).toHaveText(buttonName);
   }
 
-  async validateUrlEqualsTo(url) {
-    await expect(this.page).toHaveURL(url);
+  async validateWorkouts() {
+    await expect(this.workoutsSection).toBeVisible();
+    await expect(this.workoutsDetails.count).toBeTruthy();
   }
+
   
 }
