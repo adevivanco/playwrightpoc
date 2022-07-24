@@ -1,30 +1,40 @@
-const { test, expect } = require('@playwright/test');
-const { MainPage } = require('../pom/pages/MainPage');
+const { test, expect, chromium } = require('@playwright/test');
+const { HomePage } = require('../pom/pages/HomePage');
 
-// first test
 
 test.describe('end to end tests of workouts app', () => {
-    test.beforeEach(async ({ page }) => {
-        const mainPage = new MainPage(page);
-        // Go to the starting url before each test.
-        await mainPage.goto();
+
+    let browser = null;
+    let context = null;
+    let page = null;
+    let homePage = null;
+
+    test.beforeEach(async() => {
+        browser = await chromium.launch({ headless: true});
+        context = await browser.newContext();
+        page = await context.newPage();
+
+        homePage = new HomePage(page);
+        await homePage.goto();
+    });
+
+    test.afterAll(async() => {
+        await context.close();
+        await browser.close();
     });
 
     test('homepage has React App in title and Add Workout button', async ({ page }) => {
-        const mainPage = new MainPage(page);
-        await mainPage.validatePageTitleEquals(/React App/);
-        await mainPage.validateCreateWorkoutExistance('Add Workout');
+        await homePage.validatePageTitleEquals(/React App/);
+        await homePage.validateCreateWorkoutExistance('Add Workout');
      });
 
         // assertions and locators
     test('homepage has header with Workout Buddy link', async ({ page }) => {
-        const mainPage = new MainPage(page);
-        await mainPage.validateWorkoutBuddyHeaderLinkExistance();
+        await homePage.validateWorkoutBuddyHeaderLinkExistance();
     });
     
     test('homepage has correct URL', async ({ page }) => {
-        const mainPage = new MainPage(page);
-        await mainPage.validateWorkoutBuddyHeaderLinkExistance();
+        await homePage.validateWorkoutBuddyHeaderLinkExistance();
     });
     
 
