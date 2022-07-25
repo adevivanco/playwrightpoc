@@ -24,16 +24,27 @@ test.describe('api tests', () =>  {
         await context.dispose();
     });
 
-    test('login to API and get token', async ({ request }) => {
+    test('validate that login endpoint works correctly', async ({ request }) => {
+
+        // make request and get response
         const loginResponse = await request.post('/api/user/login', {
             data: {
-              email: USER,
-              password: PWD,
+                email: USER,
+                password: PWD,
             }
-          });
-          await expect(loginResponse.ok()).toBeTruthy();
-          var doesResponseBodyContainUser = await loginResponse.body().then(b => b.includes("andresdev@gmail.com"));
-          await expect(doesResponseBodyContainUser).toBeTruthy();
-          //await expect(data.email).toEqual(USER);
         });
+    
+        // assert on response OK (HTTP 200)
+        await expect(loginResponse.ok()).toBeTruthy();
+    
+        // get 'email' value from response's body data
+        let responseEmail = await loginResponse.body().then(b => { 
+            let data = JSON.parse(b.toString()); 
+            return data.email;
+        });
+    
+        // assert on email from response equal to email from request
+        await expect(responseEmail).toEqual(USER);
+    });
+    
 });
