@@ -14,6 +14,7 @@ const config = {
       // Assuming personal access token available in the environment.
  //     'Authorization': `token ${process.env.API_TOKEN}`,
     },
+    Authorization: process.env.token,
     reporter: 'html',
     trace: 'on'
   }
