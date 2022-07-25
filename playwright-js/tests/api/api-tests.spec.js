@@ -22,21 +22,6 @@ test.describe('api tests', () =>  {
             context = await request.newContext({
               baseURL: 'http://localhost:4000',
             });
-          
-            // Create a repository.
-            loginResponse = await context.post('/api/user/login', {
-                data: {
-                    email: USER,
-                    password: PWD,
-                }
-            });
-
-            // get 'token' value from response's body data
-            token = await loginResponse.body().then(b => { 
-                let data = JSON.parse(b.toString()); 
-                return data.token;
-            }); 
-
     });
 
     test.afterAll(async() => {
@@ -44,8 +29,16 @@ test.describe('api tests', () =>  {
     });
 
 
-    test('validate that login endpoint works correctly', async ({ request }) => {
+    test('01. validate that login endpoint works correctly', async() => {
     
+        // make request and get response
+        let loginResponse = await context.post('/api/user/login', {
+            data: {
+                email: USER,
+                password: PWD,
+            }
+        });
+
         // assert on response OK (HTTP 200)
         await expect(loginResponse.ok()).toBeTruthy();
         // get 'email' value from response's body data
@@ -57,16 +50,31 @@ test.describe('api tests', () =>  {
         // assert on email from response equal to email from request
         await expect(responseEmail).toEqual(USER);
 
+ 
+
     }); 
     
-    test('validate that user is able to get proper logouts', async ({ request}) => {
+    test('02. validate that user is able to get proper logouts', async () => {
      
         // make request and get response
-        const workoutsResponse = await request.get('/api/workouts', {
+        let loginResponse = await context.post('/api/user/login', {
+            data: {
+                email: USER,
+                password: PWD,
+            }
+        });
+
+        // get 'token' value from response's body data for other tests
+        token = await loginResponse.body().then(b => { 
+            let data = JSON.parse(b.toString()); 
+            return data.token;
+        }); 
+        
+        // make request and get response
+        const workoutsResponse = await context.get('/api/workouts', {
 
             headers: {
                 'Accept': 'application/json',
-                // Add GitHub personal access token.
                 'Authorization': 'Bearer: ' + token,
               },
         });
