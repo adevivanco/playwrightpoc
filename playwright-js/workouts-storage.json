@@ -1,0 +1,14 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "http://localhost:3000",
+      "localStorage": [
+        {
+          "name": "user",
+          "value": "{\"email\":\"andresdev@gmail.com\",\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmRjZWYyNzAyZWY5NzgzNzRiOGRlNGIiLCJpYXQiOjE2NTg3ODg5ODksImV4cCI6MTY1OTA0ODE4OX0.1JrhIygjTE3_iDA1yRVxD94GM9s5DZvfFVBBJi7JaCs\"}"
+        }
+      ]
+    }
+  ]
+}

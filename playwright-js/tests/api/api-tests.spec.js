@@ -28,7 +28,6 @@ test.describe('api tests', () =>  {
         await context.dispose();
     });
 
-
     test('01. validate that login endpoint works correctly', async() => {
     
         // make request and get response
@@ -49,8 +48,6 @@ test.describe('api tests', () =>  {
     
         // assert on email from response equal to email from request
         await expect(responseEmail).toEqual(USER);
-
- 
 
     }); 
     

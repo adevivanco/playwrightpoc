@@ -10,6 +10,7 @@ exports.HomePage = class HomePage extends BasePage {
     this.workoutButtonLocator = page.locator('div.home > form.create > button');
     this.workoutsSection = page.locator('div.pages > div.home > div.workouts');
     this.workoutsDetails  = page.locator('div.home > div.workouts > div.workout-details');
+    this.logoutButton = page.locator("//button[text()='Log out']");
   }
 
   async goto() {
@@ -24,9 +25,14 @@ exports.HomePage = class HomePage extends BasePage {
     await expect(this.workoutButtonLocator).toHaveText(buttonName);
   }
 
-  async validateWorkouts() {
+  async validateAtLeastOneWorkoutExists() {
     await expect(this.workoutsSection).toBeVisible();
-    await expect(this.workoutsDetails.count).toBeTruthy();
+    let count = await this.workoutsDetails.count();
+    await expect(count).toBeGreaterThan(0);
+  }
+
+  async validateLogoutButton() {
+    await expect(this.logoutButton).toBeVisible();
   }
 
   
