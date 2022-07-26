@@ -1,3 +1,5 @@
+**workouts-storage
+**.env
 .vscode/
 node_modules/
 /test-results/

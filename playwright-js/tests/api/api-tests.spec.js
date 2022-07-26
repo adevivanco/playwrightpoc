@@ -51,7 +51,7 @@ test.describe('api tests', () =>  {
 
     }); 
     
-    test('02. validate that user is able to get proper logouts', async () => {
+    test('02. validate that user is able to get proper workouts', async () => {
      
         // make request and get response
         let loginResponse = await context.post('/api/user/login', {
